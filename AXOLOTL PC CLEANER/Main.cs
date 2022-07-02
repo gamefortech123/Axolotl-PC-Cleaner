@@ -864,12 +864,26 @@ namespace AXOLOTL_PC_CLEANER
 
         private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            WebClient web = new WebClient();
 
+            string x = web.DownloadString("https://raw.githubusercontent.com/alonelydev7932/Axolotl-PC-Cleaner/master/Latest%20Version");
+
+            if (x.Contains("1"))
+            {
+                MessageBox.Show("You are using the latest version!", ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("The version you are using is outdated, please update!", ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                Process.Start("https://github.com/alonelydev7932/Axolotl-PC-Cleaner/releases");
+                Application.Exit();
+            }
         }
 
         private void aboutAxolotlToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("A advanced pc cleaner created in .Net" + "\nI decided to create this application due to the lack of examples found in C# on github...\nFor more information contact me on Discord!", ProductName, MessageBoxButtons.OK);
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
